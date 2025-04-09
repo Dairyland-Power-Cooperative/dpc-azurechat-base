@@ -1,4 +1,5 @@
-param name string = 'voltwrite'
+param name string
+param brandingClientName string
 param resourceToken string
 
 param openai_api_version string
@@ -43,6 +44,8 @@ param privateEndpointVNetPrefix string = '192.168.0.0/16'
 param privateEndpointSubnetAddressPrefix string = '192.168.0.0/24'
 param appServiceBackendSubnetAddressPrefix string = '192.168.1.0/24'
 
+param adminEmails string = 'vladimir.tsoy@dairylandpower.com'
+ 
 var openai_name = toLower('${name}-aillm-${resourceToken}')
 var openai_dalle_name = toLower('${name}-aidalle-${resourceToken}')
 
@@ -211,6 +214,14 @@ var appSettingsCommon = [
   {
     name: 'AZURE_STORAGE_ACCOUNT_NAME'
     value: storage_name
+  }
+  {
+    name: 'BRANDING_CLIENT_NAME'
+    value: brandingClientName
+  }
+  {
+    name: 'ADMIN_EMAIL_ADDRESS'
+    value: adminEmails
   }
 ]
 

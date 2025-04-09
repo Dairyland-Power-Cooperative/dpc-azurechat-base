@@ -1,12 +1,14 @@
 using '../../dpc_main.bicep'
 
 // Identifier for the client, used in resource names
-param clientId = '_example' 
+param clientId = '_example'
+param brandingClientName = 'Example Client Name'
 param environmentPurpose = 'prod'
 
-// Others are only if need to override defaults
+param primaryResourceLocation = 'eastus'
 
-//param primaryResourceLocation = 'eastus'
+// Others are only if need to override defaults, should be uncommon
+
 //param disableLocalAuth = true
 //param usePrivateEndpoints = true
 //param openAILocation = 'eastus'
@@ -32,3 +34,4 @@ param environmentPurpose = 'prod'
 //param privateEndpointVNetPrefix = '192.168.0.0/16'
 //param privateEndpointSubnetAddressPrefix = '192.168.0.0/24'
 //param appServiceBackendSubnetAddressPrefix = '192.168.1.0/24'
+//param adminEmails = 'vladimir.tsoy@dairylandpower.com'

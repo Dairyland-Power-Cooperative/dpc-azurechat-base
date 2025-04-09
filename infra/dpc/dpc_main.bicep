@@ -6,6 +6,9 @@ var applicationId = 'voltwrite'
 @description('Client identifier for resource naming and tagging')
 param clientId string = '_example'
 
+@description('Client name for use in branding')
+param brandingClientName string = 'Example Client Name'
+
 @description('Deployment environment (dev, test, prod)')
 @allowed([
   'dev'
@@ -14,7 +17,6 @@ param clientId string = '_example'
 ])
 param environmentPurpose string = 'prod'
 
-@minLength(1)
 @description('Primary location for all resources')
 param primaryResourceLocation string = 'eastus'
 
@@ -131,6 +133,7 @@ module resources 'dpc_resources.bicep' = {
   scope: rg
   params: {
     name: clientId
+    brandingClientName: brandingClientName
     resourceToken: resourceToken
     tags: azResourceTags
     openai_api_version: openAIApiVersion
@@ -164,6 +167,7 @@ module resources 'dpc_resources.bicep' = {
 
 output APP_URL string = resources.outputs.url
 output AZURE_WEBAPP_NAME string = resources.outputs.webapp_name
+/*
 output AZURE_LOCATION string = rg.location
 output AZURE_TENANT_ID string = tenant().tenantId
 output AZURE_RESOURCE_GROUP string = rg.name
@@ -192,3 +196,4 @@ output AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT string = 'https://${resources.output
 output AZURE_SPEECH_REGION string = rg.location
 output AZURE_STORAGE_ACCOUNT_NAME string = resources.outputs.storage_name
 output AZURE_KEY_VAULT_NAME string = resources.outputs.key_vault_name
+*/
