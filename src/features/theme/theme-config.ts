@@ -3,7 +3,8 @@ export const AI_DESCRIPTION = `${AI_NAME} is a friendly AI assistant.`;
 export const CHAT_DEFAULT_PERSONA = AI_NAME + " default";
 
 //Example: " for Freeborn Mower Electric Cooperative"
-export const FOR_CLIENT_CLAUSE = ""
+export const FOR_CLIENT_CLAUSE = process.env.CLIENT_NAME ? 
+  ` for ${process.env.CLIENT_NAME}` : "";
 
 
 export const CHAT_DEFAULT_SYSTEM_PROMPT = `You are a friendly ${AI_NAME} AI assistant${FOR_CLIENT_CLAUSE}. 
