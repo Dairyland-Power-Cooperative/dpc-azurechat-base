@@ -24,7 +24,7 @@ param speechServiceSkuName string = 'S0'
 
 param formRecognizerSkuName string = 'S0'
 
-param searchServiceSkuName string = 'standard'
+param searchServiceSkuName string = 'basic'
 param searchServiceIndexName string = 'voltwrite'
 
 param storageServiceSku object

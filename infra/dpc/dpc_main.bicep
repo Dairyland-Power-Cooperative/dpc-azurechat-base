@@ -109,7 +109,7 @@ param dalleApiVersion string = '2023-12-01-preview'
 
 param formRecognizerSkuName string = 'S0'
 param searchServiceIndexName string = 'voltwrite'
-param searchServiceSkuName string = 'standard'
+param searchServiceSkuName string = 'basic'
 
 param storageServiceSku object = { name: 'Standard_LRS' }
 param storageServiceImageContainerName string = 'images'
