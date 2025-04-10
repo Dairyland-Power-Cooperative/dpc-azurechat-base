@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
 
-name: voltwrite
+name: azure-chat
 metadata:
   template: azure-chat@0.0.1
 services:
@@ -8,30 +8,13 @@ services:
     project: ./src
     language: ts
     host: appservice
-infra:
-  path: ./infra/dpc  # Point to custom infra path
-  module: dpc_main   # Main bicep file name without .bicep extension
-  parameters:
-    # Use parametersFile to specify which bicepparam file to use
-    parametersFile: clients/${clientId}/dpc_main.bicepparam
-commands:
-  deploy-client-complete:
-    description: "Fully provision the client environment"
-    inputs:
-      - name: clientId
-        description: "Client identifier"
-        required: true
-    run:
-      windows:
-        shell: pwsh
-        run: |
-          # Deploy infrastructure
-          azd up --parameter clientId=${clientId}
-          
-          # Create app registration
-          $webappname = azd env get-value AZURE_WEBAPP_NAME
-          ./scripts/appreg_setup.ps1 -webappname $webappname
-
-          # Remove outputs from the bicep deployment
-          azd env unset APP_URL
-          azd env unset AZURE_WEBAPP_NAME
+hooks:
+  postdeploy:
+    posix:
+      shell: sh
+      run: echo "\n\033[0;36mTo complete the application setup you will need to configure an identity provider\033[0m\n(see the "Production App Setup" documentation at https://github.com/microsoft/azurechat/blob/main/docs/3-add-identity.md)\n"
+      interactive: true
+      continueOnError: false
+    windows:
+      shell: pwsh
+      run: Write-Host "`nTo complete the application setup you will need to configure an identity provider`n(see the 'Production App Setup' documentation at https://github.com/microsoft/azurechat/blob/main/docs/3-add-identity.md)`n" -ForegroundColor Cyan
