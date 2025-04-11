@@ -109,7 +109,7 @@ RESULT=$(az deployment sub create \
   --name "$DEPLOYMENT_NAME" \
   --location northcentralus \
   --template-file "./infra/dpc/dpc_main.bicep" \
-  --parameters "@$BICEPPARAM_FILE" \
+  --parameters "$BICEPPARAM_FILE" \
   --query "properties.outputs" -o json)
 
 # Check if deployment was successful

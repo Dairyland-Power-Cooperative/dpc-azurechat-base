@@ -499,6 +499,7 @@ resource azureopenai 'Microsoft.CognitiveServices/accounts@2023-05-01' = {
     customSubDomainName: openai_name
     publicNetworkAccess: usePrivateEndpoints ? 'Disabled' : 'Enabled'
     disableLocalAuth: disableLocalAuth
+    networkAcls: usePrivateEndpoints ? { defaultAction: 'Allow' } : null
   }
   sku: {
     name: openAiSkuName
